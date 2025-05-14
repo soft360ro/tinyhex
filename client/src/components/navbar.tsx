@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white shadow-md" : "bg-white/90 backdrop-blur-sm"
+      isScrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -74,14 +74,14 @@ const Navbar: React.FC = () => {
               <button 
                 key={link.href}
                 onClick={() => scrollToSection(link.href)} 
-                className="font-medium text-gray-700 hover:text-accent transition-colors"
+                className="font-medium text-neutral-dark hover:text-accent transition-colors"
               >
                 {link.label}
               </button>
             ))}
             <Button
               onClick={() => scrollToSection("#contact")}
-              className="bg-primary hover:bg-primary-light text-white"
+              className="bg-primary hover:bg-primary-light text-white font-medium"
             >
               {t("nav.contactUs")}
             </Button>
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
           
           {/* Mobile Navigation Toggle */}
           <button 
-            className="md:hidden text-gray-700 focus:outline-none" 
+            className="md:hidden text-primary focus:outline-none" 
             id="menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -107,25 +107,25 @@ const Navbar: React.FC = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden py-4"
+              className="md:hidden overflow-hidden py-4 bg-white rounded-b-lg shadow-lg"
             >
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col space-y-4 px-2">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className="font-medium text-gray-700 hover:text-accent transition-colors"
+                    className="font-medium text-neutral-dark hover:text-accent transition-colors py-2"
                   >
                     {link.label}
                   </button>
                 ))}
                 <Button 
                   onClick={() => scrollToSection("#contact")}
-                  className="bg-primary hover:bg-primary-light text-white w-full"
+                  className="bg-primary hover:bg-primary-light text-white w-full font-medium"
                 >
                   {t("nav.contactUs")}
                 </Button>
-                <div className="pt-2">
+                <div className="pt-2 flex justify-center">
                   <LanguageSelector />
                 </div>
               </div>

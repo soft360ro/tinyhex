@@ -7,7 +7,7 @@ const HeroSection: React.FC = () => {
   const { t } = useTranslation();
   
   return (
-    <section className="relative pt-24 pb-32 overflow-hidden bg-gradient-to-r from-primary to-primary-light">
+    <section className="relative pt-28 pb-32 overflow-hidden bg-gradient-to-br from-primary to-primary-light">
       {/* Hero Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div 
@@ -28,9 +28,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-              {t("hero.title")} <br/> for <span className="text-accent">Real Estate</span>
+              {t("hero.title")} <br/> for <span className="text-accent font-bold">Real Estate</span>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-xl mb-8">
+            <p className="text-white/90 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
               {t("hero.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -39,7 +39,7 @@ const HeroSection: React.FC = () => {
                   const contactSection = document.querySelector("#contact");
                   contactSection?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="bg-accent hover:bg-accent/90 text-primary font-semibold py-6 px-8 h-auto"
+                className="bg-accent hover:bg-accent-hover text-white font-semibold py-6 px-8 h-auto shadow-lg"
               >
                 <span>{t("hero.getStarted")}</span>
                 <i className="fas fa-arrow-right ml-2"></i>
@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
                   const servicesSection = document.querySelector("#services");
                   servicesSection?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="border border-white/30 hover:bg-white/10 text-white font-semibold py-6 px-8 h-auto"
+                className="border-2 border-white hover:bg-white/10 text-white font-semibold py-6 px-8 h-auto"
               >
                 <span>{t("hero.ourServices")}</span>
               </Button>
@@ -64,17 +64,23 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <motion.img 
-              src="https://images.unsplash.com/photo-1581091877018-dac6a371d50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&h=500&q=80" 
-              alt="Real estate software platform" 
-              className="rounded-xl shadow-2xl transform lg:translate-y-6 max-w-full h-auto"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -left-10 w-20 h-20 bg-accent/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-5 -right-5 w-16 h-16 bg-white/30 rounded-full blur-lg"></div>
+              
+              <motion.img 
+                src="https://images.unsplash.com/photo-1581091877018-dac6a371d50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&h=500&q=80" 
+                alt="Real estate software platform" 
+                className="rounded-xl shadow-2xl transform lg:translate-y-6 max-w-full h-auto border-4 border-white/10"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </div>
           </motion.div>
         </div>
       </div>

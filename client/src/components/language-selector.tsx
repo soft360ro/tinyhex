@@ -25,12 +25,12 @@ const LanguageSelector: React.FC = () => {
       value={i18n.language}
       onValueChange={changeLanguage}
     >
-      <SelectTrigger className="w-[130px] bg-transparent border-neutral-medium">
+      <SelectTrigger className="w-[130px] bg-white border-neutral-medium text-neutral-dark hover:border-accent focus:border-accent">
         <SelectValue placeholder={t("language")} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-white">
         {languages.map((lang) => (
-          <SelectItem key={lang.code} value={lang.code}>
+          <SelectItem key={lang.code} value={lang.code} className="hover:bg-neutral-light">
             {lang.name}
           </SelectItem>
         ))}
