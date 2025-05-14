@@ -11,34 +11,36 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { contactFormSchema, type ContactFormValues } from "@shared/schema";
 import { submitContactForm } from "@/lib/contact-form";
-
-const contactInfo = [
-  {
-    icon: "fas fa-map-marker-alt",
-    title: "Address",
-    content: "Alba Iulia Square no. 10, Bucharest"
-  },
-  {
-    icon: "fas fa-phone-alt",
-    title: "Phone",
-    content: "0213.117.847"
-  },
-  {
-    icon: "fas fa-envelope",
-    title: "Email",
-    content: "office@tinyhex.ro"
-  }
-];
-
-const socialLinks = [
-  { icon: "fab fa-facebook-f", url: "#" },
-  { icon: "fab fa-twitter", url: "#" },
-  { icon: "fab fa-linkedin-in", url: "#" },
-  { icon: "fab fa-github", url: "#" }
-];
+import { useTranslation } from "react-i18next";
 
 const ContactSection: React.FC = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
+  
+  const contactInfo = [
+    {
+      icon: "fas fa-map-marker-alt",
+      title: t("contact.info.address"),
+      content: "Alba Iulia Square no. 10, Bucharest"
+    },
+    {
+      icon: "fas fa-phone-alt",
+      title: t("contact.info.phone"),
+      content: "0213.117.847"
+    },
+    {
+      icon: "fas fa-envelope",
+      title: t("contact.info.email"),
+      content: "office@tinyhex.ro"
+    }
+  ];
+
+  const socialLinks = [
+    { icon: "fab fa-facebook-f", url: "#" },
+    { icon: "fab fa-twitter", url: "#" },
+    { icon: "fab fa-linkedin-in", url: "#" },
+    { icon: "fab fa-github", url: "#" }
+  ];
   
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -55,16 +57,16 @@ const ContactSection: React.FC = () => {
     mutationFn: submitContactForm,
     onSuccess: () => {
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: t("contact.success"),
+        description: t("contact.successMessage"),
         variant: "default"
       });
       form.reset();
     },
     onError: (error) => {
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        title: t("contact.error"),
+        description: error instanceof Error ? error.message : t("contact.errorMessage"),
         variant: "destructive"
       });
     }
@@ -86,7 +88,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display font-bold text-3xl text-primary mb-8">Contact Us</h2>
+            <h2 className="font-display font-bold text-3xl text-primary mb-8">{t("contact.title")}</h2>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -95,10 +97,10 @@ const ContactSection: React.FC = () => {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-medium text-gray-700">Full Name</FormLabel>
+                        <FormLabel className="font-medium text-gray-700">{t("contact.form.fullName")}</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="Your name" 
+                            placeholder={t("contact.form.fullName")} 
                             {...field} 
                             className="w-full px-4 py-3 border border-neutral-medium rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
                           />
@@ -112,7 +114,7 @@ const ContactSection: React.FC = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-medium text-gray-700">Email Address</FormLabel>
+                        <FormLabel className="font-medium text-gray-700">{t("contact.form.email")}</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="your.email@example.com" 
@@ -131,10 +133,10 @@ const ContactSection: React.FC = () => {
                   name="company"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-medium text-gray-700">Company</FormLabel>
+                      <FormLabel className="font-medium text-gray-700">{t("contact.form.company")}</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="Your company name" 
+                          placeholder={t("contact.form.company")} 
                           {...field} 
                           className="w-full px-4 py-3 border border-neutral-medium rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
                         />
@@ -149,14 +151,14 @@ const ContactSection: React.FC = () => {
                   name="service"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-medium text-gray-700">Service You're Interested In</FormLabel>
+                      <FormLabel className="font-medium text-gray-700">{t("contact.form.service")}</FormLabel>
                       <Select 
                         onValueChange={field.onChange} 
                         defaultValue={field.value}
                       >
                         <FormControl>
                           <SelectTrigger className="w-full px-4 py-3 border border-neutral-medium rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors">
-                            <SelectValue placeholder="Select a service" />
+                            <SelectValue placeholder={t("contact.form.selectService")} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -179,10 +181,10 @@ const ContactSection: React.FC = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-medium text-gray-700">Message</FormLabel>
+                      <FormLabel className="font-medium text-gray-700">{t("contact.form.message")}</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Tell us about your project or requirements" 
+                          placeholder={t("contact.form.messagePlaceholder")} 
                           rows={4} 
                           {...field} 
                           className="w-full px-4 py-3 border border-neutral-medium rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
@@ -200,11 +202,11 @@ const ContactSection: React.FC = () => {
                 >
                   {mutation.isPending ? (
                     <span className="flex items-center">
-                      <i className="fas fa-spinner fa-spin mr-2"></i> Sending...
+                      <i className="fas fa-spinner fa-spin mr-2"></i> {t("contact.form.sending")}
                     </span>
                   ) : (
                     <span className="flex items-center">
-                      <span>Send Message</span>
+                      <span>{t("contact.form.send")}</span>
                       <i className="fas fa-paper-plane ml-2"></i>
                     </span>
                   )}
@@ -221,7 +223,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="font-display font-semibold text-xl mb-6">Contact Information</h3>
+            <h3 className="font-display font-semibold text-xl mb-6">{t("contact.info.title")}</h3>
             
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
@@ -252,7 +254,7 @@ const ContactSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <h4 className="font-semibold mb-4">Follow Us</h4>
+                <h4 className="font-semibold mb-4">{t("contact.info.followUs")}</h4>
                 <div className="flex space-x-4">
                   {socialLinks.map((link, index) => (
                     <motion.a 

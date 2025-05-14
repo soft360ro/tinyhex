@@ -1,52 +1,54 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Logo from "./logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const servicesLinks = [
-  { label: "Web Development", href: "#services" },
-  { label: "Real Estate Platforms", href: "#services" },
-  { label: "Mobile Applications", href: "#services" },
-  { label: "Business Intelligence", href: "#services" },
-  { label: "CRM Solutions", href: "#services" }
-];
-
-const companyLinks = [
-  { label: "About Us", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Careers", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" }
-];
-
-const socialLinks = [
-  { icon: "fab fa-facebook-f", url: "#" },
-  { icon: "fab fa-twitter", url: "#" },
-  { icon: "fab fa-linkedin-in", url: "#" },
-  { icon: "fab fa-github", url: "#" }
-];
-
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [email, setEmail] = React.useState("");
+
+  const servicesLinks = [
+    { label: "Web Development", href: "#services" },
+    { label: "Real Estate Platforms", href: "#services" },
+    { label: "Mobile Applications", href: "#services" },
+    { label: "Business Intelligence", href: "#services" },
+    { label: "CRM Solutions", href: "#services" }
+  ];
+
+  const companyLinks = [
+    { label: t("footer.links.aboutUs"), href: "#about" },
+    { label: t("footer.links.projects"), href: "#projects" },
+    { label: t("footer.links.careers"), href: "#" },
+    { label: t("footer.links.privacy"), href: "#" },
+    { label: t("footer.links.terms"), href: "#" }
+  ];
+
+  const socialLinks = [
+    { icon: "fab fa-facebook-f", url: "#" },
+    { icon: "fab fa-twitter", url: "#" },
+    { icon: "fab fa-linkedin-in", url: "#" },
+    { icon: "fab fa-github", url: "#" }
+  ];
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address",
+        title: t("footer.invalidEmail"),
+        description: t("footer.invalidEmailMessage"),
         variant: "destructive"
       });
       return;
     }
     
     toast({
-      title: "Thanks for subscribing!",
-      description: "You've been added to our newsletter list."
+      title: t("footer.subscribeSuccess"),
+      description: t("footer.subscribeMessage")
     });
     
     setEmail("");
@@ -71,13 +73,13 @@ const Footer: React.FC = () => {
           <div className="md:col-span-1">
             <Logo className="mb-4" />
             <p className="text-white/80 mb-6">
-              Custom software solutions for real estate businesses.
+              {t("footer.about")}
             </p>
           </div>
           
           {/* Services Links */}
           <div className="md:col-span-1">
-            <h4 className="font-semibold text-lg mb-4">Services</h4>
+            <h4 className="font-semibold text-lg mb-4">{t("footer.services")}</h4>
             <ul className="space-y-2">
               {servicesLinks.map((link, index) => (
                 <li key={index}>
@@ -94,7 +96,7 @@ const Footer: React.FC = () => {
           
           {/* Company Links */}
           <div className="md:col-span-1">
-            <h4 className="font-semibold text-lg mb-4">Company</h4>
+            <h4 className="font-semibold text-lg mb-4">{t("footer.company")}</h4>
             <ul className="space-y-2">
               {companyLinks.map((link, index) => (
                 <li key={index}>
@@ -111,14 +113,14 @@ const Footer: React.FC = () => {
           
           {/* Newsletter Signup */}
           <div className="md:col-span-1">
-            <h4 className="font-semibold text-lg mb-4">Stay Updated</h4>
-            <p className="text-white/80 mb-4">Subscribe to our newsletter for the latest updates.</p>
+            <h4 className="font-semibold text-lg mb-4">{t("footer.stayUpdated")}</h4>
+            <p className="text-white/80 mb-4">{t("footer.newsletter")}</p>
             <form className="flex" onSubmit={handleNewsletterSubmit}>
               <Input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
+                placeholder={t("footer.emailPlaceholder")}
                 className="rounded-l-lg focus:outline-none text-gray-800 rounded-r-none focus-visible:ring-offset-0"
                 required
               />
@@ -133,7 +135,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/70 mb-4 md:mb-0">© {new Date().getFullYear()} TinyHEX. All rights reserved.</p>
+          <p className="text-white/70 mb-4 md:mb-0">© {new Date().getFullYear()} TinyHEX. {t("footer.rights")}</p>
           <div className="flex space-x-6">
             {socialLinks.map((link, index) => (
               <motion.a 
