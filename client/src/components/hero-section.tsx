@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 const HeroSection: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="relative pt-24 pb-32 overflow-hidden bg-gradient-to-r from-primary to-primary-light">
       {/* Hero Background Pattern */}
@@ -25,10 +28,10 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-              Custom Software Solutions <br/> for <span className="text-accent">Real Estate</span>
+              {t("hero.title")} <br/> for <span className="text-accent">Real Estate</span>
             </h1>
             <p className="text-white/90 text-lg md:text-xl max-w-xl mb-8">
-              We build tailored digital solutions to help real estate businesses manage listings, streamline operations, and create unique web experiences.
+              {t("hero.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Button 
@@ -38,7 +41,7 @@ const HeroSection: React.FC = () => {
                 }}
                 className="bg-accent hover:bg-accent/90 text-primary font-semibold py-6 px-8 h-auto"
               >
-                <span>Get Started</span>
+                <span>{t("hero.getStarted")}</span>
                 <i className="fas fa-arrow-right ml-2"></i>
               </Button>
               <Button 
@@ -49,7 +52,7 @@ const HeroSection: React.FC = () => {
                 }}
                 className="border border-white/30 hover:bg-white/10 text-white font-semibold py-6 px-8 h-auto"
               >
-                <span>Our Services</span>
+                <span>{t("hero.ourServices")}</span>
               </Button>
             </div>
           </motion.div>

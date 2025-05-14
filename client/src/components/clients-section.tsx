@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const clients = [
   { name: "VIB Imobiliare", url: "https://vibimobiliare.ro" },
@@ -9,11 +10,13 @@ const clients = [
 ];
 
 const ClientsSection: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="py-8 bg-neutral-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <p className="text-neutral-dark font-medium">Trusted by leading real estate companies</p>
+          <p className="text-neutral-dark font-medium">{t("clients.trusted")}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center">
           {clients.map((client, index) => (

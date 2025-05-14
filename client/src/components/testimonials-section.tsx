@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const testimonials = [
   {
@@ -15,6 +16,8 @@ const testimonials = [
 ];
 
 const TestimonialsSection: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,8 +28,8 @@ const TestimonialsSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">What Our Clients Say</h2>
-          <p className="text-neutral-dark text-lg">Hear from real estate professionals who've partnered with us for their digital needs.</p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">{t("testimonials.title")}</h2>
+          <p className="text-neutral-dark text-lg">{t("testimonials.subtitle")}</p>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -1,38 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-const services = [
-  {
-    icon: "fas fa-laptop-code",
-    title: "Custom Web Development",
-    description: "Tailored websites and web applications built specifically for real estate agencies and developers."
-  },
-  {
-    icon: "fas fa-building",
-    title: "Real Estate Platforms",
-    description: "Advanced property management systems to streamline listings, client interactions, and sales processes."
-  },
-  {
-    icon: "fas fa-mobile-alt",
-    title: "Mobile Applications",
-    description: "Mobile solutions for real estate professionals and their clients to access properties on the go."
-  },
-  {
-    icon: "fas fa-chart-line",
-    title: "Business Intelligence",
-    description: "Data analytics and reporting tools to provide insights and help make data-driven decisions."
-  },
-  {
-    icon: "fas fa-tachometer-alt",
-    title: "CRM Solutions",
-    description: "Customer relationship management systems designed specifically for real estate customer journeys."
-  },
-  {
-    icon: "fas fa-sync",
-    title: "Integration Services",
-    description: "Seamless integration with existing systems and third-party services for a unified workflow."
-  }
-];
+import { useTranslation } from "react-i18next";
 
 const container = {
   hidden: { opacity: 0 },
@@ -50,6 +18,47 @@ const item = {
 };
 
 const ServicesSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: "fas fa-laptop-code",
+      key: "webDev",
+      title: t("services.items.webDev.title"),
+      description: t("services.items.webDev.description")
+    },
+    {
+      icon: "fas fa-building",
+      key: "platforms",
+      title: t("services.items.platforms.title"),
+      description: t("services.items.platforms.description")
+    },
+    {
+      icon: "fas fa-mobile-alt",
+      key: "mobile",
+      title: t("services.items.mobile.title"),
+      description: t("services.items.mobile.description")
+    },
+    {
+      icon: "fas fa-chart-line",
+      key: "bi",
+      title: t("services.items.bi.title"),
+      description: t("services.items.bi.description")
+    },
+    {
+      icon: "fas fa-tachometer-alt",
+      key: "crm",
+      title: t("services.items.crm.title"),
+      description: t("services.items.crm.description")
+    },
+    {
+      icon: "fas fa-sync",
+      key: "integration",
+      title: t("services.items.integration.title"),
+      description: t("services.items.integration.description")
+    }
+  ];
+
   return (
     <section id="services" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,8 +69,8 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">Our Specialized Services</h2>
-          <p className="text-neutral-dark text-lg">We deliver customized software solutions to help real estate businesses thrive in the digital landscape.</p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">{t("services.title")}</h2>
+          <p className="text-neutral-dark text-lg">{t("services.subtitle")}</p>
         </motion.div>
         
         <motion.div 
@@ -73,7 +82,7 @@ const ServicesSection: React.FC = () => {
         >
           {services.map((service, index) => (
             <motion.div
-              key={index}
+              key={service.key}
               className="group bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-neutral-medium hover:border-accent"
               variants={item}
               whileHover={{ y: -5 }}

@@ -1,27 +1,34 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
-const features = [
-  {
-    title: "Centralized Property Management",
-    description: "Manage all your properties, listings, and developments in one place."
-  },
-  {
-    title: "Automated Marketing Tools",
-    description: "Multi-channel marketing to increase visibility and reach potential buyers."
-  },
-  {
-    title: "Website Integration",
-    description: "Seamlessly connect your platform with your website for real-time updates."
-  },
-  {
-    title: "Client Relationship Management",
-    description: "Keep track of client interactions and sales pipeline in one system."
-  }
-];
-
 const ProductSpotlight: React.FC = () => {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      key: "propertyMgmt",
+      title: t("product.features.propertyMgmt.title"),
+      description: t("product.features.propertyMgmt.description")
+    },
+    {
+      key: "marketing",
+      title: t("product.features.marketing.title"),
+      description: t("product.features.marketing.description")
+    },
+    {
+      key: "website",
+      title: t("product.features.website.title"),
+      description: t("product.features.website.description")
+    },
+    {
+      key: "clientMgmt",
+      title: t("product.features.clientMgmt.title"),
+      description: t("product.features.clientMgmt.description")
+    }
+  ];
+
   return (
     <section className="py-20 bg-neutral-light relative overflow-hidden">
       {/* Background Pattern */}
@@ -60,17 +67,17 @@ const ProductSpotlight: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent font-medium text-sm mb-6">
-              Our Main Product
+              {t("product.mainProduct")}
             </div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-6">Soft360: The Complete Real Estate Platform</h2>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-6">{t("product.title")}</h2>
             <p className="text-neutral-dark text-lg mb-8">
-              A comprehensive solution for real estate developers and agencies to organize their business, promote listings, and manage websites with ease.
+              {t("product.description")}
             </p>
             
             <div className="space-y-6">
               {features.map((feature, index) => (
                 <motion.div 
-                  key={index}
+                  key={feature.key}
                   className="flex items-start"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +103,7 @@ const ProductSpotlight: React.FC = () => {
                 className="bg-primary hover:bg-primary-light text-white font-semibold h-auto py-3 px-8"
               >
                 <a href="https://soft360.ro" target="_blank" rel="noopener noreferrer">
-                  <span>Explore Soft360</span>
+                  <span>{t("product.cta")}</span>
                   <i className="fas fa-external-link-alt ml-2"></i>
                 </a>
               </Button>

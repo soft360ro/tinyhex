@@ -1,36 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-const projects = [
-  {
-    name: "VIB Imobiliare",
-    url: "https://vibimobiliare.ro",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
-    description: "A complete real estate agency platform with integrated listing management, client tracking, and marketing tools.",
-    tags: ["Web Development", "CRM Integration", "Property Management"]
-  },
-  {
-    name: "Aqua City",
-    url: "https://aquacity.ro",
-    image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
-    description: "Custom digital platform for a large residential development, featuring interactive building selection and unit availability.",
-    tags: ["Interactive Maps", "Sales Portal", "Client Dashboard"]
-  },
-  {
-    name: "Magnolia Urban Residence",
-    url: "https://magnoliaurbanresidence.ro",
-    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
-    description: "Modern website with 3D tours, apartment configurator, and integrated reservation system for a new urban development.",
-    tags: ["3D Visualization", "Booking System", "Payment Integration"]
-  },
-  {
-    name: "Maia",
-    url: "https://maia.ro",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
-    description: "Multi-project platform for a major developer, with centralized management of multiple residential developments.",
-    tags: ["Portfolio Management", "Lead Distribution", "Analytics Dashboard"]
-  }
-];
+import { useTranslation } from "react-i18next";
 
 const container = {
   hidden: { opacity: 0 },
@@ -48,6 +18,39 @@ const item = {
 };
 
 const ProjectsShowcase: React.FC = () => {
+  const { t } = useTranslation();
+
+  const projects = [
+    {
+      name: "VIB Imobiliare",
+      url: "https://vibimobiliare.ro",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
+      description: "A complete real estate agency platform with integrated listing management, client tracking, and marketing tools.",
+      tags: ["Web Development", "CRM Integration", "Property Management"]
+    },
+    {
+      name: "Aqua City",
+      url: "https://aquacity.ro",
+      image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
+      description: "Custom digital platform for a large residential development, featuring interactive building selection and unit availability.",
+      tags: ["Interactive Maps", "Sales Portal", "Client Dashboard"]
+    },
+    {
+      name: "Magnolia Urban Residence",
+      url: "https://magnoliaurbanresidence.ro",
+      image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
+      description: "Modern website with 3D tours, apartment configurator, and integrated reservation system for a new urban development.",
+      tags: ["3D Visualization", "Booking System", "Payment Integration"]
+    },
+    {
+      name: "Maia",
+      url: "https://maia.ro",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80",
+      description: "Multi-project platform for a major developer, with centralized management of multiple residential developments.",
+      tags: ["Portfolio Management", "Lead Distribution", "Analytics Dashboard"]
+    }
+  ];
+
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,8 +61,8 @@ const ProjectsShowcase: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">Our Client Projects</h2>
-          <p className="text-neutral-dark text-lg">Discover how we've helped real estate businesses transform their digital presence and operations.</p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">{t("projects.title")}</h2>
+          <p className="text-neutral-dark text-lg">{t("projects.subtitle")}</p>
         </motion.div>
         
         <motion.div 
@@ -89,7 +92,7 @@ const ProjectsShowcase: React.FC = () => {
                     rel="noopener noreferrer"
                     className="bg-white text-primary hover:bg-accent hover:text-white font-semibold py-2 px-6 rounded-lg transition-colors"
                   >
-                    Visit Website
+                    {t("projects.visitWebsite")}
                   </a>
                 </div>
               </div>
@@ -124,7 +127,7 @@ const ProjectsShowcase: React.FC = () => {
             }}
             className="text-accent hover:text-accent-secondary font-semibold inline-flex items-center transition-colors"
           >
-            <span>Ready to start your project?</span>
+            <span>{t("projects.startProject")}</span>
             <i className="fas fa-arrow-right ml-2"></i>
           </button>
         </motion.div>

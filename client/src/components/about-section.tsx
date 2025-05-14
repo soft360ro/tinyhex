@@ -1,21 +1,24 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-const expertise = [
-  "Web Development",
-  "Mobile Applications",
-  "UX/UI Design",
-  "Real Estate Systems"
-];
-
-const approach = [
-  "Client-Centered",
-  "Data-Driven",
-  "Agile Methodology", 
-  "Continuous Support"
-];
+import { useTranslation } from "react-i18next";
 
 const AboutSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const expertise = [
+    "Web Development",
+    "Mobile Applications",
+    "UX/UI Design",
+    "Real Estate Systems"
+  ];
+
+  const approach = [
+    "Client-Centered",
+    "Data-Driven",
+    "Agile Methodology", 
+    "Continuous Support"
+  ];
+
   return (
     <section id="about" className="py-20 bg-neutral-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,19 +47,19 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent font-medium text-sm mb-6">
-              Who We Are
+              {t("about.whoWeAre")}
             </div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-6">The TinyHEX Team</h2>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-6">{t("about.title")}</h2>
             <p className="text-neutral-dark text-lg mb-6">
-              We are a small team of IT specialists from Bucharest, passionate about creating innovative software solutions for the real estate industry. With years of experience in both technology and real estate, we bring a unique perspective to every project.
+              {t("about.description1")}
             </p>
             <p className="text-neutral-dark text-lg mb-8">
-              We provide out-of-the-box solutions tailored to each partner's needs and provide assistance from the analysis and requirements definition phase to the support and maintenance phase.
+              {t("about.description2")}
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-display font-semibold text-lg mb-2">Our Expertise</h4>
+                <h4 className="font-display font-semibold text-lg mb-2">{t("about.expertise")}</h4>
                 <ul className="space-y-2">
                   {expertise.map((item, index) => (
                     <motion.li 
@@ -74,7 +77,7 @@ const AboutSection: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="font-display font-semibold text-lg mb-2">Our Approach</h4>
+                <h4 className="font-display font-semibold text-lg mb-2">{t("about.approach")}</h4>
                 <ul className="space-y-2">
                   {approach.map((item, index) => (
                     <motion.li 
