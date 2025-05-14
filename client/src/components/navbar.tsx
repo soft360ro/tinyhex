@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Logo from "./logo";
+import LanguageSelector from "./language-selector";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useScroll } from "@/hooks/use-scroll";
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollY = useScroll();
   const isScrolled = scrollY > 50;
@@ -40,9 +43,9 @@ const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
-    { href: "#about", label: "About" }
+    { href: "#services", label: t("nav.services") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#about", label: t("nav.about") }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -80,8 +83,9 @@ const Navbar: React.FC = () => {
               onClick={() => scrollToSection("#contact")}
               className="bg-primary hover:bg-primary-light text-white"
             >
-              Contact Us
+              {t("nav.contactUs")}
             </Button>
+            <LanguageSelector />
           </div>
           
           {/* Mobile Navigation Toggle */}
@@ -119,8 +123,11 @@ const Navbar: React.FC = () => {
                   onClick={() => scrollToSection("#contact")}
                   className="bg-primary hover:bg-primary-light text-white w-full"
                 >
-                  Contact Us
+                  {t("nav.contactUs")}
                 </Button>
+                <div className="pt-2">
+                  <LanguageSelector />
+                </div>
               </div>
             </motion.div>
           )}
