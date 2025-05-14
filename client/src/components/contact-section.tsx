@@ -86,10 +86,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display font-bold text-3xl text-primary mb-4">Contact Us</h2>
-            <p className="text-neutral-dark mb-8">
-              Ready to transform your real estate business? Fill out the form below to get started.
-            </p>
+            <h2 className="font-display font-bold text-3xl text-primary mb-8">Contact Us</h2>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -198,7 +195,7 @@ const ContactSection: React.FC = () => {
                 
                 <Button 
                   type="submit" 
-                  className="bg-accent hover:bg-accent/90 text-primary font-semibold h-auto py-3 px-8"
+                  className="bg-primary hover:bg-primary-light text-white font-semibold h-auto py-3 px-8"
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending ? (
