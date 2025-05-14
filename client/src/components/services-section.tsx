@@ -60,7 +60,7 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-gradient-to-b from-neutral-light to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center max-w-3xl mx-auto mb-16"
@@ -69,8 +69,11 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-4">{t("services.title")}</h2>
-          <p className="text-neutral-dark text-lg">{t("services.subtitle")}</p>
+          <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent font-medium text-sm mb-4">
+            {t("services.label")}
+          </div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-primary mb-6">{t("services.title")}</h2>
+          <p className="text-neutral-dark text-lg max-w-2xl mx-auto">{t("services.subtitle")}</p>
         </motion.div>
         
         <motion.div 
@@ -83,15 +86,18 @@ const ServicesSection: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.key}
-              className="group bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-neutral-medium hover:border-accent"
+              className="group bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all border border-neutral-medium hover:border-accent overflow-hidden relative"
               variants={item}
               whileHover={{ y: -5 }}
             >
-              <div className="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all">
+              {/* Decorative corner shape */}
+              <div className="absolute -top-10 -right-10 w-20 h-20 bg-neutral-light rounded-full opacity-50 group-hover:bg-accent/10 transition-colors"></div>
+              
+              <div className="w-16 h-16 rounded-xl bg-neutral-light flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all">
                 <i className={`${service.icon} text-2xl`}></i>
               </div>
-              <h3 className="font-display font-semibold text-xl mb-3">{service.title}</h3>
-              <p className="text-neutral-dark">{service.description}</p>
+              <h3 className="font-display font-semibold text-xl mb-3 text-primary">{service.title}</h3>
+              <p className="text-neutral-dark leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </motion.div>
